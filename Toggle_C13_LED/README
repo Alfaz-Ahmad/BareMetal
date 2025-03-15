@@ -1,0 +1,4 @@
+arm-none-eabi-as -mcpu=cortex-m3 -mthumb startup.s -o startup.o
+arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -Wall -Wextra -nostartfiles -T linker.ld -o main.elf startup.o main.c
+arm-none-eabi-objcopy -O binary main.elf main.bin
+STM32_Programmer_CLI -c port=SWD -w main.bin 0x08000000
